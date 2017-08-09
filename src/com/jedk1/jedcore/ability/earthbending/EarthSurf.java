@@ -4,10 +4,10 @@ import com.jedk1.jedcore.JedCore;
 import com.jedk1.jedcore.util.MaterialUtil;
 import com.jedk1.jedcore.util.RegenTempBlock;
 import com.jedk1.jedcore.util.TempFallingBlock;
+import com.jedk1.jedcore.util.VersionUtil;
 import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.EarthAbility;
-import com.projectkorra.projectkorra.earthbending.passive.EarthPassive;
 import com.projectkorra.projectkorra.util.TempBlock;
 
 import org.bukkit.Location;
@@ -192,13 +192,13 @@ public class EarthSurf extends EarthAbility implements AddonAbility {
 				Block block = loc.clone().add(0, -3.9, 0).toVector().add(location.clone().getDirection().multiply(distOffset - 0.5)).toLocation(player.getWorld()).getBlock();
 				Location temp = loc.clone().add(0, -2.9, 0).toVector().add(location.clone().getDirection().multiply(distOffset)).toLocation(player.getWorld());
 
-				if (EarthPassive.isPassiveSand(block)) {
-					EarthPassive.revertSand(block);
+				if (VersionUtil.isPassiveSand(block)) {
+					VersionUtil.revertSand(block);
 				}
 
 				if (!GeneralMethods.isSolid(block.getLocation().add(0, 1, 0).getBlock()) && block.getLocation().add(0, 1, 0).getBlock().getType() != null && block.getLocation().add(0, 1, 0).getBlock().getType() != Material.AIR) {
-					if (EarthPassive.isPassiveSand(block.getRelative(BlockFace.UP))) {
-						EarthPassive.revertSand(block.getRelative(BlockFace.UP));
+					if (VersionUtil.isPassiveSand(block.getRelative(BlockFace.UP))) {
+						VersionUtil.revertSand(block.getRelative(BlockFace.UP));
 					}
 
 					new TempBlock(block.getRelative(BlockFace.UP), Material.AIR, (byte) 0);
